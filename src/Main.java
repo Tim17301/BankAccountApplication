@@ -7,8 +7,6 @@ public class Main {
 
     public static void menu(){
         Scanner scanner = new Scanner(System.in);
-        allFunctions allFunctionsClass = new allFunctions();
-
 
         boolean end = false;
         while (!end){
@@ -21,24 +19,25 @@ public class Main {
             System.out.println("(7) Programm beenden");
 
             int menuAuswahl = scanner.nextInt();
+            scanner.nextLine();
             switch(menuAuswahl){
                 case 1:
-                    allFunctionsClass.kontoErstellen();
+                    allFunctions.kontoErstellen();
                     break;
                 case 2:
-                    allFunctionsClass.kontoLöschen();
+                    allFunctions.kontoLöschen();
                     break;
                 case 3:
-                    allFunctionsClass.kontoListeAusgeben();
+                    allFunctions.kontoListeAusgeben();
                     break;
                 case 4:
-                    allFunctionsClass.guthabenAusgeben();
+                    allFunctions.guthabenAusgeben();
                     break;
                 case 5:
-                    allFunctionsClass.auszahlen();
+                    allFunctions.auszahlen();
                     break;
                 case 6:
-                    allFunctionsClass.einzahlen();
+                    allFunctions.einzahlen();
                     break;
                 case 7:
                     end = true;

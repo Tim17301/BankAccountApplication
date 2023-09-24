@@ -78,7 +78,8 @@ public class allFunctions {
     }
 
     public static void auszahlen() {
-        System.out.println("auszahlen");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Betrag zum auszahlen angeben:");
     }
 
 

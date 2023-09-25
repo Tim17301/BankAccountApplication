@@ -12,7 +12,7 @@ public class Main {
         while (!end){
             System.out.println("(1) Konto erstellen");
             System.out.println("(2) Konto löschen");
-            System.out.println("(3) Liste aller Kontos anzeigen");
+            System.out.println("(3) Liste aller Konten anzeigen");
             System.out.println("(4) Guthaben abfragen");
             System.out.println("(5) Auszahlen");
             System.out.println("(6) Einzahlen");

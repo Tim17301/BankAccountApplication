@@ -53,7 +53,28 @@ public class allFunctions {
     }//kontoerstellen()
 
     public static void kontoLöschen() {
-        System.out.println("konto löschen");
+        Scanner scanner = new Scanner(System.in);
+        boolean inputValidKundenummer = false;
+        System.out.println("Konto löschen:");
+
+        //Läuft bis man eine richtige Kundennummer eingegeben hat
+        while (!inputValidKundenummer){
+            System.out.println("Bitte gebe deine Kundennummer ein:");
+            String Kundennummer = scanner.nextLine();
+            try {
+                Konto konto = allKontos.get(Kundennummer);
+                
+
+                inputValidKundenummer = true; // Wenn alles erfolgreich ist, beende die Schleife
+            } catch (NullPointerException e){
+                System.out.println("Fehler: Bitte geben Sie eine gültige Kundennummer ein.");
+                //scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            } catch (Exception ex){
+                System.out.println("Fehler: Es ist ein unerwarteter Fehler aufgetreten.");
+                ex.printStackTrace(); // Hier kannst du die Fehlerdetails ausgeben, um bei der Fehlerbehebung zu helfen.
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            }//catch
+        }//while (!inputValidKundenummer)
     }
 
     public static void kontoListeAusgeben() {
@@ -69,22 +90,119 @@ public class allFunctions {
 
     public static void guthabenAusgeben() {
         Scanner scanner = new Scanner(System.in);
+        boolean inputValidKundenummer = false;
         System.out.println("Guthaben:");
 
-        System.out.println("Bitte gebe deine Kundennumer ein:");
-        String Kundennummer = scanner.nextLine();
-        Konto konto = allKontos.get(Kundennummer);
-        System.out.println(konto.getStartGuthaben());
-    }
+        //Läuft bis man eine richtige Kundennummer eingegeben hat
+        while (!inputValidKundenummer){
+            System.out.println("Bitte gebe deine Kundennummer ein:");
+            String Kundennummer = scanner.nextLine();
+            try {
+                Konto konto = allKontos.get(Kundennummer);
+                System.out.println("Ihr aktuelles Guthaben lautet: " + konto.getStartGuthaben());
+
+                inputValidKundenummer = true; // Wenn alles erfolgreich ist, beende die Schleife
+            } catch (NullPointerException e){
+                System.out.println("Fehler: Bitte geben Sie eine gültige Kundennummer ein.");
+                //scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            } catch (Exception ex){
+                System.out.println("Fehler: Es ist ein unerwarteter Fehler aufgetreten.");
+                ex.printStackTrace(); // Hier kannst du die Fehlerdetails ausgeben, um bei der Fehlerbehebung zu helfen.
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            }//catch
+        }//while (!inputValidKundenummer)
+
+    }//guthabenAusgeben()
 
     public static void auszahlen() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Betrag zum auszahlen angeben:");
-    }
+        boolean inputValid = false;
+        boolean inputValidKundenummer = false;
+        Konto konto = null;
+
+        //Läuft bis man eine richtige Kundennummer eingegeben hat
+        while (!inputValidKundenummer){
+            System.out.println("Bitte gebe deine Kundennummer ein:");
+            String Kundennummer = scanner.nextLine();
+            try {
+                konto = allKontos.get(Kundennummer);
+
+                inputValidKundenummer = true; // Wenn alles erfolgreich ist, beende die Schleife
+            } catch (NullPointerException e){
+                System.out.println("Fehler: Bitte geben Sie eine gültige Kundennummer ein.");
+                //scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            } catch (Exception ex){
+                System.out.println("Fehler: Es ist ein unerwarteter Fehler aufgetreten.");
+                ex.printStackTrace(); // Hier kannst du die Fehlerdetails ausgeben, um bei der Fehlerbehebung zu helfen.
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            }//catch
+        }//while (!inputValidKundenummer)
+
+        while (!inputValid){
+            double aktuellesGuthaben = konto.getStartGuthaben();
+            System.out.println("Betrag zum auszahlen angeben:");
+            try {
+                double auszahlBetrag = scanner.nextDouble();
+                konto.setStartGuthaben(aktuellesGuthaben - auszahlBetrag);
+                System.out.println("Abhebung erfolgreich!");
+                System.out.println("Ihr neuer Kontostand lautet: " + konto.getStartGuthaben());
+
+                inputValid = true; // Wenn alles erfolgreich ist, beende die Schleife
+            } catch (InputMismatchException e){
+                System.out.println("Fehler: Bitte geben Sie eine gültige Zahl ein.");
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            } catch (Exception ex){
+                System.out.println("Fehler: Es ist ein unerwarteter Fehler aufgetreten.");
+                ex.printStackTrace(); // Hier kannst du die Fehlerdetails ausgeben, um bei der Fehlerbehebung zu helfen.
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            }//catch
+        }//while (!inputValid)
+    }//auszahlen()
 
 
     public static void einzahlen() {
-        System.out.println("einzahlen");
-    }
+        Scanner scanner = new Scanner(System.in);
+        boolean inputValid = false;
+        boolean inputValidKundenummer = false;
+        Konto konto = null;
 
-}
+        //Läuft bis man eine richtige Kundennummer eingegeben hat
+        while (!inputValidKundenummer){
+            System.out.println("Bitte gebe deine Kundennummer ein:");
+            String Kundennummer = scanner.nextLine();
+            try {
+                konto = allKontos.get(Kundennummer);
+
+                inputValidKundenummer = true; // Wenn alles erfolgreich ist, beende die Schleife
+            } catch (NullPointerException e){
+                System.out.println("Fehler: Bitte geben Sie eine gültige Kundennummer ein.");
+                //scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            } catch (Exception ex){
+                System.out.println("Fehler: Es ist ein unerwarteter Fehler aufgetreten.");
+                ex.printStackTrace(); // Hier kannst du die Fehlerdetails ausgeben, um bei der Fehlerbehebung zu helfen.
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            }//catch
+        }//while (!inputValidKundenummer)
+
+        while (!inputValid){
+            double aktuellesGuthaben = konto.getStartGuthaben();
+            System.out.println("Betrag zum einzahlen angeben:");
+            try {
+                double einzahlBetrag = scanner.nextDouble();
+                konto.setStartGuthaben(aktuellesGuthaben + einzahlBetrag);
+                System.out.println("Einzahlung erfolgreich!");
+                System.out.println("Ihr neuer Kontostand lautet: " + konto.getStartGuthaben());
+
+                inputValid = true; // Wenn alles erfolgreich ist, beende die Schleife
+            } catch (InputMismatchException e){
+                System.out.println("Fehler: Bitte geben Sie eine gültige Zahl ein.");
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            } catch (Exception ex){
+                System.out.println("Fehler: Es ist ein unerwarteter Fehler aufgetreten.");
+                ex.printStackTrace(); // Die Fehlerdetails ausgeben, um bei der Fehlerbehebung zu helfen.
+                scanner.nextLine(); //Fehlerhafte Eingabe verwerfen
+            }//catch
+        }//while (!inputValid)
+    }//einzahlen()
+
+}//allFunctions Klasse

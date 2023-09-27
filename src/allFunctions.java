@@ -63,7 +63,7 @@ public class allFunctions {
             String Kundennummer = scanner.nextLine();
             try {
                 Konto konto = allKontos.get(Kundennummer);
-                
+                allKontos.remove(Kundennummer);
 
                 inputValidKundenummer = true; // Wenn alles erfolgreich ist, beende die Schleife
             } catch (NullPointerException e){
